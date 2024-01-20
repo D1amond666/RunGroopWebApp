@@ -4,6 +4,7 @@ using RunGroopWebApp.Models;
 
 namespace RunGroopWebApp.Data
 {
+    // Auto-filling the database
     public class Seed
     {
         public static void SeedData(IApplicationBuilder applicationBuilder)
