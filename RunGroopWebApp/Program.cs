@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RunGroopWebApp.Data;
+
 namespace RunGroopWebApp
 {
     public class Program
@@ -8,8 +11,19 @@ namespace RunGroopWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            // Connecting the database to the application
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
             var app = builder.Build();
+
+            // Filling the database
+            if (args.Length == 1 && args[0].ToLower() == "seeddata")
+            {
+                //await Seed.SeedUsersAndRolesAsync(app);
+                Seed.SeedData(app);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
