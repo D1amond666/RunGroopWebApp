@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using RunGroopWebApp.Data;
+using RunGroopWebApp.Helpers;
 using RunGroopWebApp.Interfaces;
 using RunGroopWebApp.Repository;
+using RunGroopWebApp.Services;
 
 namespace RunGroopWebApp
 {
@@ -16,6 +18,9 @@ namespace RunGroopWebApp
             // Add Repository-service
             builder.Services.AddScoped<IClubRepository, ClubRepository>();
             builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+            // Connecting Cloudinary and Photo-services
+            builder.Services.AddScoped<IPhotoService, PhotoService>();
+            builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
             // Connecting the database to the application
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
