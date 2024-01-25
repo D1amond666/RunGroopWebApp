@@ -77,7 +77,7 @@ namespace RunGroopWebApp.Controllers
                 AddressId = club.AddressId,
                 Address = club.Address,
                 URL = club.Image,
-                ClubCategory = club.ClubCategory
+                RaceCategory = club.ClubCategory
             };
 
             return View(clubVM);
@@ -105,6 +105,7 @@ namespace RunGroopWebApp.Controllers
                     ModelState.AddModelError("", "Could not delete photo");
                     return View(clubVM);
                 }
+
                 var photoResult = await _photoService.AddPhotoAsync(clubVM.Image);
 
                 var club = new Club
