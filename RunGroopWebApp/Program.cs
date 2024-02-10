@@ -23,6 +23,8 @@ namespace RunGroopWebApp
             builder.Services.AddScoped<IRaceRepository, RaceRepository>();
             // Connecting Dashboard service
             builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+            // Connecting User service
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
             // Connecting Cloudinary and Photo-services
             builder.Services.AddScoped<IPhotoService, PhotoService>();
             builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
